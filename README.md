@@ -1,4 +1,4 @@
 Javalabra
 =========
 
-Jotakin ja tallenna se.
+Jotakin tallenna se.

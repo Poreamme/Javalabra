@@ -1,0 +1,13 @@
+Aihe: IrcBot
+
+Toteutetaan botti, jonka tulisi tehdä asioita sekä automaattisesti, että komentojen kautta, jotta
+botin käyttäjien elämästä tulisi hitusen mukavampaa. Esimerkki käyttötarkoituksia ovat esimerkiksi
+Chatlogin kerääminen niille jotka eivät osaa screeniä käyttää, Auto-oppaaminen ja muuta pientä
+mutta hupsua.
+
+Käyttäjät: Irc Yhteisö
+
+Käyttäjien Toiminnot:
+	* Chat-Login luku
+	* Auto-op
+

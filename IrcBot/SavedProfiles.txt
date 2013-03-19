@@ -1,0 +1,12 @@
+irc.inet.fi
+Poreamme
+PoreBot
+#Porebottaus
+irc.paivola.fi
+Yakuchi
+YakuBot
+#testailuva
+irc.sorcery.net
+LettiPois
+LettiBot
+#GrindBot

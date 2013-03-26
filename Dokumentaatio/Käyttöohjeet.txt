@@ -1,1 +1,20 @@
-Coming soon :D
+Valitse käyttö moodi:
+	Normal Mode: Sieventää viestit fiksun näköisiksi
+	Debug Mode: ei koske viestien ulkoasuun vaan näyttää ne sellaisenaan
+
+Luo uusi- tai lataa vanha profiili tiedostosta
+	Luo uusi profiili:
+		Anna irc-verkon osoite
+		Anna botin omistaja (oma nick)
+		Anna botille nimi
+		Anna irc kanava jonne botti liittyy
+
+		Tallenna profiili?
+
+	Lataa vanha profiili
+		valitse listasta haluamasi profiili
+		ja kirjoita sen irc-verkon osoite
+
+Botin olisi tarkoitus liittyä irc-verkkoon tässä vaiheessa.
+tämän jälkeen et voi tehdä muuta kuin katsoa että mitä tapahtuu
+...toistaiseksi	

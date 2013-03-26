@@ -39,7 +39,9 @@ public class SavedProfilesTest {
      */
     @Test
     public void testSaveProfile() {
-        
+        boolean expected = true;
+        boolean temp = instance.saveProfile(new Profile("testi.serveri.fi", "testiOwner", "testiNick", "#testiKanava"));
+        assertEquals("LoadProfiles should have returned \"" + expected + "\"." + " and was + "+ temp + "\"." , expected, temp);
     }
 
     /**
@@ -52,7 +54,6 @@ public class SavedProfilesTest {
         expected.put("irc.paivola.fi", new Profile("irc.paivola.fi", "Yakuchi", "YakuBot", "#testailuva"));
         expected.put("irc.sorcery.net", new Profile("irc.sorcery.net", "LettiPois", "LettiBot", "#GrindBot"));
 
-        //vaiheessa...
         assertEquals("LoadProfiles should have returned \"" + expected + "\"." + " and was + "+ instance.loadProfiles() + "\"." , expected, instance.loadProfiles());
     }
 }

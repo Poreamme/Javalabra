@@ -5,3 +5,47 @@
 	 - Taustamateriaaliin tutustuminen
 	 - Aihemäärittelyn tekeminen
 	 - Tuntikirjanpidon aloittaminen
+
+17.3.2013
+	20:00-21:00
+	- IrcBotin irc-verkkoo yhdistys
+	- Profile Luokan kasaus
+	- SavedProfiles luokan kasaus
+
+18.3.2013
+	13:00-14:15
+	- Main luokan sisällön siirto
+	IrcClientBotApp luokan sisään
+	koska static funktiot.
+	- IrcBotDebug luokan kasaus
+	- ProfileTest kasaus
+	- IrcBotTest kasaus
+	- IrcClientBotApp kasaus
+	- SavedProfilesTest kasaus
+
+19.3.2013
+	18:00-20:00
+	- luokkien ja testien viimeistelyä
+	- Luokkakaavion piirto
+	- Gitin kanssa säätö
+	- tulevan viikon taustamateriaalin 
+	etsintä / opiskelu.
+
+
+24.3.2013
+	18:00-20:00
+	- Profiilin tallennuksen ja käyttöön oton
+	luonti ja bugien kanssa taistelu
+	- Testien päivitystä
+
+25.3.2013
+	15:00-16:00
+	- Ladatun tai Luodun profiilin käyttö irc botin
+	profiilina.
+	- Luettavan datan parserointi
+
+26.3.2013
+	20:00-21:00
+	- luokkien viimeistelyä
+	- tuntikirjanpidon päivitystä
+	- Gitti säätöä

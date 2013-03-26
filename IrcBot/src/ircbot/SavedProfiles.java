@@ -9,7 +9,19 @@ public class SavedProfiles {
     public SavedProfiles(){
         
     }
-    public void saveProfile(Profile profile){
+    public boolean saveProfile(Profile profile){
+        try
+        {
+            FileWriter fs = new FileWriter("SavedProfiles.txt", true);
+            BufferedWriter out = new BufferedWriter(fs);
+            out.write(profile.toString());
+            out.close();
+            return true;
+        }catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+            return false;
+        }
+        
         
     }
     public HashMap<String, Profile> loadProfiles(){

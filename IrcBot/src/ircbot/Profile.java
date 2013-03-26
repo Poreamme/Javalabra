@@ -29,7 +29,7 @@ public class Profile {
     }
     
     public String toString(){
-        String temp = this.server + "\n" + this.owner + "\n" + this.nick + "\n" + this.channel;
+        String temp = this.server + "\r\n" + this.owner + "\r\n" + this.nick + "\r\n" + this.channel + "\r\n";
         return temp;
     }
     

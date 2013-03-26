@@ -1,4 +1,3 @@
-
 package ircbot;
 
 import java.io.BufferedReader;
@@ -9,47 +8,70 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class IrcBot {
-    
+
     public String server;
     public String owner;
-    public String nick;   
+    public String nick;
     public String channel;
     public PrintWriter output;
-    
-    public IrcBot(String server, String owner, String nick, String channel) throws IOException{
-        this.server = server;
-        this.owner = owner;
-        this.nick = nick;
-        this.channel = channel;
+    public CommandCenter cc;
+
+    public IrcBot(Profile profile) throws IOException {
+        this.server = profile.getServer();
+        this.owner = profile.getOwner();
+        this.nick = profile.getNick();
+        this.channel = profile.getChannel();
         Start();
     }
-    
-    private void Start()  throws IOException{
-        String str;
+
+    private void Start() throws IOException {
+        String message;
         Socket sock = new Socket(this.server, 6667);
         BufferedReader input = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         output = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
-        
-        int z = send( "USER " + this.nick + " 0 * :" + this.owner + "\r\n" + "NICK " + this.nick + "\r\n");
-        
-        while(sock.isConnected()){
-            
-            str = input.readLine();
-            System.out.println(str);
-            
-            if(str.startsWith("PING ")){
-                int i = send("PONG ");
+
+        send("USER " + this.nick + " 0 * :" + this.owner + "\r\n" + "NICK " + this.nick + "\r\n");
+
+        this.cc = new CommandCenter(this);
+
+        while (sock.isConnected()) {
+            message = input.readLine();
+            if (message.split(" ")[1].equals("001")) {
+                send("MODE " + this.nick + " +B\r\n" + "JOIN " + this.channel + "\r\n");
             }
-            if(str.split(" ")[1].equals("001")) {
-                int i =send("MODE " + this.nick + " +B\r\n" + "JOIN " + this.channel + "\r\n");
+            if (message.startsWith("PING")) {
+                Ping();
+            }else if(message.startsWith(":")){
+                if(message.split("!")[0].substring(1).equals(this.nick) || message.split(" ")[1].startsWith("00")){
+                    
+                }
+                else{
+                    parseMessage(message);
+                }
             }
         }
         sock.close();
     }
-    public int send(String string){
+
+    public void parseMessage(String message){
+        
+        String sender = message.split("!")[0].substring(1);
+        String channel = message.split(" ")[2];
+        String msg = message.split(":")[2];
+        System.out.println("<"+sender+">" + " PRIVMSG " + channel + " " + "["+msg+"]");
+        
+        this.cc.readMessage(sender, channel, msg);
+    }
+    
+    public void send(String string) {
         System.out.println(string);
         output.print(string);
         output.flush();
-        return 1;
+    }
+
+    public void Ping() {
+        System.out.println("PONG");
+        output.print("PONG");
+        output.flush();
     }
 }

@@ -1,3 +1,5 @@
+
+
 package ircbot;
 
 import java.io.BufferedReader;
@@ -16,6 +18,11 @@ public class IrcBot {
     public PrintWriter output;
     public CommandCenter cc;
 
+    
+    /*
+     * Does the botting.
+     * @param profile Contains the server,owner,nick and channel for the bot
+     */
     public IrcBot(Profile profile) throws IOException {
         this.server = profile.getServer();
         this.owner = profile.getOwner();
@@ -53,8 +60,12 @@ public class IrcBot {
         sock.close();
     }
 
+    /*
+     * Reforges the message to look less confusing for the user.
+     * @param message String which will be reforged.
+     */
     public void parseMessage(String message){
-        
+                
         String sender = message.split("!")[0].substring(1);
         String channel = message.split(" ")[2];
         String msg = message.split(":")[2];
@@ -62,7 +73,10 @@ public class IrcBot {
         
         this.cc.readMessage(sender, channel, msg);
     }
-    
+    /*
+     * Sends the desired message.
+     * @param string String which contains the message to be sent.
+     */
     public void send(String string) {
         System.out.println(string);
         output.print(string);

@@ -4,6 +4,7 @@
  */
 package ircbot;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +46,8 @@ public class IrcClientBotAppTest {
      */
     @Test
     public void testChooseRunningMode() throws Exception {
-        boolean expected;
+        boolean expected = false;
+        assertEquals("ChooseRunningMode should've returned " + expected + ", but returned " + instance.ChooseRunningMode(),expected, instance.ChooseRunningMode());
     }
 
     /**

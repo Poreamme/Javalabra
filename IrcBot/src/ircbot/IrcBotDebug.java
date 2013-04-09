@@ -16,11 +16,11 @@ public class IrcBotDebug {
     public String channel;
     public PrintWriter output;
     
-    public IrcBotDebug(String server, String owner, String nick, String channel) throws IOException{
-        this.server = server;
-        this.owner = owner;
-        this.nick = nick;
-        this.channel = channel;
+    public IrcBotDebug(Profile profile) throws IOException{
+        this.server = profile.getServer();
+        this.owner = profile.getOwner();
+        this.nick = profile.getNick();
+        this.channel = profile.getChannel();
         Start();
     }
     

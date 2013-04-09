@@ -9,6 +9,11 @@ public class SavedProfiles {
     public SavedProfiles(){
         
     }
+    /*
+     * Saves a profile to a file
+     * @param profile Profile to be saved.
+     * @return true if the profile was saved, otherwise false.
+     */
     public boolean saveProfile(Profile profile){
         try
         {
@@ -24,6 +29,10 @@ public class SavedProfiles {
         
         
     }
+    /*
+     * Gets the list of profiles from file
+     * @return HashMap<String, Profile> which contains all the saved profiles.
+     */
     public HashMap<String, Profile> loadProfiles(){
         HashMap<String, Profile> ProfileList = new HashMap<String, Profile>();
         try

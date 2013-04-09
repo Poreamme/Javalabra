@@ -49,3 +49,18 @@
 	- luokkien viimeistelyä
 	- tuntikirjanpidon päivitystä
 	- Gitti säätöä
+
+4.4.2013
+	13:00-14:00
+	- sekvenssikaavion tekoa
+
+7.4.2013
+	20:00-22:00
+	- ChatLogin tallennus päivämäärän mukaan
+	- IrcBotin Debuggausta
+
+9.4.2013
+	16:30-22:00
+	- Graafisen käyttöliittymän suunnittelua,
+	toteutus puolta ei olla vielä otettu käyttöön.
+	- JavaDoc osittain tehty, ei täysin valmis vielä.

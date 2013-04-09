@@ -1,6 +1,8 @@
+
 package ircbot;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -125,7 +127,11 @@ public class IrcClientBotApp {
     public void initialize() throws InterruptedException, IOException {
         boolean DebugMode = ChooseRunningMode();
         Profile profile = ChooseProfile();
-        IrcBot ircbot = new IrcBot(profile);
+        if(DebugMode){
+            IrcBotDebug ircbot = new IrcBotDebug(profile);
+        }else{
+            IrcBot ircbot = new IrcBot(profile);
+        }
     }
 
     private void clearConsole() {

@@ -21,7 +21,7 @@ public class CommandCenter {
     public void readMessage(String sender, String channel, String message){
         saveChatLog(sender, channel, message);
         if(sender.equals(this.ircBot.owner)
-                && message.equals("GTFO")){
+                && message.equalsIgnoreCase("GTFO")){
             System.exit(0);
         }
     }

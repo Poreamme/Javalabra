@@ -17,7 +17,6 @@ public class IrcBot {
     public String channel;
     public PrintWriter output;
     public CommandCenter cc;
-
     
     /*
      * Does the botting.
@@ -48,11 +47,11 @@ public class IrcBot {
             }
             if (message.startsWith("PING")) {
                 Ping();
-            }else if(message.startsWith(":")){
-                if(message.split("!")[0].substring(1).equals(this.nick) || message.split(" ")[1].startsWith("00")){
-                    
-                }
-                else{
+            }
+            if(message.split(" ", 2)[1].substring(0, 4+this.nick.length()).matches("[0-9]{3} "+this.nick)){
+            }else{
+                if(message.split(" ", 2)[1].substring(0, 7+this.nick.length()).equalsIgnoreCase("NOTICE "+this.nick)){
+                }else{
                     parseMessage(message);
                 }
             }
@@ -68,7 +67,7 @@ public class IrcBot {
                 
         String sender = message.split("!")[0].substring(1);
         String channel = message.split(" ")[2];
-        String msg = message.split(":")[2];
+        String msg = message.split(":", 3)[2];
         System.out.println("<"+sender+">" + " PRIVMSG " + channel + " " + "["+msg+"]");
         
         this.cc.readMessage(sender, channel, msg);
@@ -78,13 +77,12 @@ public class IrcBot {
      * @param string String which contains the message to be sent.
      */
     public void send(String string) {
-        System.out.println(string);
+        System.out.print(string);
         output.print(string);
         output.flush();
     }
 
     public void Ping() {
-        System.out.println("PONG");
         output.print("PONG");
         output.flush();
     }

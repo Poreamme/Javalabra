@@ -64,3 +64,33 @@
 	- Graafisen käyttöliittymän suunnittelua,
 	toteutus puolta ei olla vielä otettu käyttöön.
 	- JavaDoc osittain tehty, ei täysin valmis vielä.
+
+
+10.4.2013
+	15:00-22:00
+	- Graafisen käyttöliittymän tekemiseen tarvittavan
+	dokumentaation lukemista
+	- Graafisen Käyttöliittymän dokumentaatioiden läpikäynti
+	ja tarkistus
+
+11.4.2013
+	16:00-18:00
+	- MainViewin kasausta
+	- Bugi -> rageQuit
+
+13.4.2013
+	16:00-17:00
+	- Bugin kanssa taistelua
+	- RageQuit
+
+16.4.2013
+	15:00-21:30
+	- Bugin kanssa taistelua
+	- Bugi tapettu
+	- Irc Botin viestin parserointi bugit korjattu
+	- Viestien suodatin säädetty poistamaan kaikki
+	ei-halutut serverin lähettämät viestit jotta
+	UI:sta saataisiin mukavan näköinen normaali
+	moodissa.
+	- note to self, tee graafinen käyttöliittymä
+	QT:lla kuten ennenkin.

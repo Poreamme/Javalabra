@@ -1,8 +1,12 @@
-
 package ircbot;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -44,77 +48,28 @@ public class IrcClientBotApp {
     public Profile ChooseProfile() throws InterruptedException {
         System.out.println("New Profile or Load Existing Profile: \n"
                 + " 1 = Create New Profile \n"
-                + " 2 = Load Existing Profile");
+                + " 2 = Load Existing Profile \n"
+                + " 3 = Load Previous Profile");
 
         int profile = Integer.parseInt(scanner.nextLine());
 
         clearConsole();
         if (profile == 1) {
-            System.out.println("Creating new profile: ");
-            System.out.print("Server: ");
-            String server = scanner.nextLine();
-            System.out.print("Owner: ");
-            String owner = scanner.nextLine();
-            System.out.print("Nick: ");
-            String nick = scanner.nextLine();
-            System.out.print("Channel: ");
-            String channel = scanner.nextLine();
-
-            while (true) {
-                System.out.println("Do you want to save this profile? 1 / 0");
-                Profile newProfile = new Profile(server, owner, nick, channel);
-                int temp = Integer.parseInt(scanner.nextLine());
-                if (temp == 1) {
-                    HashMap<String, Profile> checkIfExists = profiles.loadProfiles();
-
-                    if (checkIfExists.containsKey(server)) {
-                        if (checkIfExists.get(server).equals(newProfile)) {
-                            System.out.println("This profile already exists");
-                        }
-                    } else {
-                        boolean didItWork = profiles.saveProfile(newProfile);
-                        if (didItWork) {
-                            System.out.println("Profile saved successfully!");
-                        } else {
-                            System.out.println("Failed to save profile.");
-                        }
-                    }
-                    Thread.sleep(1000);
-                    clearConsole();
-                    return newProfile;
-                } else if (temp == 0) {
-                    clearConsole();
-                    return newProfile;
-                } else {
-                    System.out.println("There's no such option \n");
-                    Thread.sleep(1000);
-                    clearConsole();
-                    System.out.println(newProfile.toString());
-                }
-            }
-
-
+            return createNewProfile();
         } else if (profile == 2) {
-            HashMap<String, Profile> loadedProfiles = profiles.loadProfiles();
-            while (true) {
-                for (Profile temprofile : loadedProfiles.values()) {
-                    System.out.println(temprofile);
-                }
-                System.out.println("\nChoose your Profile by typing its server:\nHINT: type EXIT to quit");
-                String desiredProfile = scanner.nextLine();
-                if (desiredProfile.equals("EXIT")) {
-                    System.exit(0);
-                } else if (loadedProfiles.containsKey(desiredProfile)) {
-                    Thread.sleep(1000);
-                    clearConsole();
-                    return loadedProfiles.get(desiredProfile);
-                } else {
-                    System.out.println("There's no such profile saved \n");
-                    Thread.sleep(1000);
-                    clearConsole();
-                }
+            return loadExistingProfile();
+        }else if (profile == 3){
+            Profile lastProfile = getPreviousProfile();
+            if(lastProfile == null){
+                System.out.println("There's no previous profile, "
+                        + "please load an existing profile or create a new one \n");
+                Thread.sleep(1000);
+                clearConsole();
+                ChooseProfile();
+            }else{
+                return lastProfile;
             }
-        } else {
+         } else {
             System.out.println("There's no such option \n");
             Thread.sleep(1000);
             clearConsole();
@@ -124,12 +79,118 @@ public class IrcClientBotApp {
         return null;
     }
 
+    public Profile getPreviousProfile() {
+
+        if (new File("PreviousProfile.txt").exists()) {
+            try {
+                FileInputStream fs = new FileInputStream("PreviousProfile.txt");
+                DataInputStream in = new DataInputStream(fs);
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                String str;
+                String[] profileParts = new String[4];
+                int i = 0;
+
+                while ((str = br.readLine()) != null) {
+                    profileParts[i++] = str;
+                }
+
+                in.close();
+                return new Profile(profileParts[0], profileParts[1], profileParts[2], profileParts[3]);
+            } catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+                return null;
+            }
+            
+        }
+        
+        else{
+            return null;
+        }
+   
+    }
+
+    public Profile loadExistingProfile() throws InterruptedException {
+        HashMap<String, Profile> loadedProfiles = profiles.loadProfiles();
+        while (true) {
+            for (Profile temprofile : loadedProfiles.values()) {
+                System.out.println(temprofile);
+            }
+            System.out.println("\nChoose your Profile by typing its server:\nHINT: type EXIT to quit");
+            String desiredProfile = scanner.nextLine();
+            if (desiredProfile.equals("EXIT")) {
+                System.exit(0);
+            } else if (loadedProfiles.containsKey(desiredProfile)) {
+                Thread.sleep(1000);
+                clearConsole();
+                return loadedProfiles.get(desiredProfile);
+            } else {
+                System.out.println("There's no such profile saved \n");
+                Thread.sleep(1000);
+                clearConsole();
+            }
+        }
+    }
+
+    public Profile createNewProfile() throws InterruptedException {
+        Profile newProfile = gatherProfileData();
+        while (true) {
+            System.out.println("Do you want to save this profile? 1 / 0");
+            int temp = Integer.parseInt(scanner.nextLine());
+            if (temp == 1) {
+                return createAndSave(newProfile);
+            } else if (temp == 0) {
+                clearConsole();
+                return newProfile;
+            } else {
+                System.out.println("There's no such option \n");
+                Thread.sleep(1000);
+                clearConsole();
+                System.out.println(newProfile.toString());
+            }
+        }
+    }
+
+    public Profile createAndSave(Profile newProfile) throws InterruptedException {
+        HashMap<String, Profile> checkIfExists = profiles.loadProfiles();
+
+        if (checkIfExists.containsKey(newProfile.getServer())) {
+            if (checkIfExists.get(newProfile.getServer()).equals(newProfile)) {
+                System.out.println("This profile already exists");
+            }
+        } else {
+            boolean didItWork = profiles.saveProfile(newProfile);
+            if (didItWork) {
+                System.out.println("Profile saved successfully!");
+            } else {
+                System.out.println("Failed to save profile.");
+            }
+        }
+        Thread.sleep(1000);
+        clearConsole();
+        return newProfile;
+    }
+
+    public Profile gatherProfileData() {
+        System.out.println("Creating new profile: ");
+        System.out.print("Server: ");
+        String server = scanner.nextLine();
+        System.out.print("Owner: ");
+        String owner = scanner.nextLine();
+        System.out.print("Nick: ");
+        String nick = scanner.nextLine();
+        System.out.print("Channel: ");
+        String channel = scanner.nextLine();
+
+        return new Profile(server, owner, nick, channel);
+    }
+
     public void initialize() throws InterruptedException, IOException {
         boolean DebugMode = ChooseRunningMode();
         Profile profile = ChooseProfile();
-        if(DebugMode){
+        profiles.setPreviousProfile(profile);
+        if (DebugMode) {
             IrcBotDebug ircbot = new IrcBotDebug(profile);
-        }else{
+        } else {
             IrcBot ircbot = new IrcBot(profile);
         }
     }

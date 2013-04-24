@@ -47,8 +47,7 @@ public class IrcBot {
             }
             if (message.startsWith("PING")) {
                 Ping();
-            }
-            if(message.split(" ", 2)[1].substring(0, 4+this.nick.length()).matches("[0-9]{3} "+this.nick)){
+            }else if(message.split(" ", 2)[1].substring(0, 4+this.nick.length()).matches("[0-9]{3} "+this.nick)){
             }else{
                 if(message.split(" ", 2)[1].substring(0, 7+this.nick.length()).equalsIgnoreCase("NOTICE "+this.nick)){
                 }else{
@@ -76,9 +75,25 @@ public class IrcBot {
      * Sends the desired message.
      * @param string String which contains the message to be sent.
      */
-    public void send(String string) {
-        System.out.print(string);
-        output.print(string);
+    
+    //Private Message to a person
+    public void send(String sender, String message, int kieroTapaKiertaaErrori){
+        System.out.print(""/*Tänne tulee mömmöä*/);
+        output.print(message);
+        output.flush();
+    }
+    
+    //public message to a channel
+    public void send(String channel, String message) {
+        System.out.println("<"+this.nick+">" + " PRIVMSG " + channel + " " + "["+message+"]");
+        output.print("PRIVMSG "+channel+" :"+message+"\r\n");
+        output.flush();
+    }
+    
+    //Message which is already fit for irc syntax
+    public void send(String message) {
+        System.out.print(message);
+        output.print(message);
         output.flush();
     }
 

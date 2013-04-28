@@ -1,13 +1,11 @@
-Aihe: IrcBot
+Aihe: Irc Bot
 
-Toteutetaan botti, jonka tulisi tehd‰ asioita sek‰ automaattisesti, ett‰ komentojen kautta, jotta
-botin k‰ytt‰jien el‰m‰st‰ tulisi hitusen mukavampaa. Esimerkki k‰yttˆtarkoituksia ovat esimerkiksi
-Chatlogin ker‰‰minen niille jotka eiv‰t osaa screeni‰ k‰ytt‰‰, Auto-oppaaminen ja muuta pient‰
-mutta hupsua.
-
-K‰ytt‰j‰t: Irc Yhteisˆ
-
-K‰ytt‰jien Toiminnot:
-	* Chat-Login luku
-	* Auto-op
-
+Alunperin oli tarkoitus tehd‰ botti joka oikeasti tekisi jotain fiksua,
+Mutta koska yleens‰ botti tehd‰‰n jotain fiksua tarkoitusta varten eik‰
+keksita fiksua tarkoitusta bottia varten, niin fiksun asian keksiminen
+osottautui hankalaksi.
+	T‰st‰ johtuen p‰‰tin tehd‰ toimivan IrcBot-pohjan jonka p‰‰lle
+on helppo rakentaa sellainen irc bot kuin tarve vaatii. K‰yt‰nnˆss‰
+ei edes tarvitse tiet‰‰, ett‰ miten t‰m‰ pohja toimii vaan riitt‰‰
+kuin tiet‰‰ ett‰ miten haluaa botin reagoivan viesteihin, viestin
+l‰hett‰j‰‰n tai kanavaan jolta viesti on l‰hetetty.

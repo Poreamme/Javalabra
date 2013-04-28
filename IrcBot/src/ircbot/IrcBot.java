@@ -3,6 +3,7 @@
 package ircbot;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -27,9 +28,14 @@ public class IrcBot {
         this.owner = profile.getOwner();
         this.nick = profile.getNick();
         this.channel = profile.getChannel();
+        makeDirectory();
         Start();
     }
 
+    /*
+     * the Main loop of the irc bot, Which catches the messages and "sends"
+     * them forward to other methods and classes to be handled.
+     */
     private void Start() throws IOException {
         String message;
         Socket sock = new Socket(this.server, 6667);
@@ -47,8 +53,7 @@ public class IrcBot {
             }
             if (message.startsWith("PING")) {
                 Ping();
-            }
-            if(message.split(" ", 2)[1].substring(0, 4+this.nick.length()).matches("[0-9]{3} "+this.nick)){
+            }else if(message.split(" ", 2)[1].substring(0, 4+this.nick.length()).matches("[0-9]{3} "+this.nick)){
             }else{
                 if(message.split(" ", 2)[1].substring(0, 7+this.nick.length()).equalsIgnoreCase("NOTICE "+this.nick)){
                 }else{
@@ -72,18 +77,41 @@ public class IrcBot {
         
         this.cc.readMessage(sender, channel, msg);
     }
+    
     /*
      * Sends the desired message.
-     * @param string String which contains the message to be sent.
+     * @param sender String which contains the sender name or channel of the message sent.
+     * @param message String which contains the message to be sent.
      */
-    public void send(String string) {
-        System.out.print(string);
-        output.print(string);
+    
+    public void send(String channelOrNick, String message) {
+        System.out.println("<"+this.nick+">" + " PRIVMSG " + channelOrNick + " " + "["+message+"]");
+        output.print("PRIVMSG "+channelOrNick+" :"+message+"\r\n");
+        output.flush();
+    }
+    
+    /*
+     * Sends the desired message.
+     * @param message String which contains the message to be sent.
+     */
+    public void send(String message) {
+        System.out.print(message);
+        output.print(message);
         output.flush();
     }
 
+    /*
+     * sens "PONG" to the server when server says "PING". See Start()
+     */
     public void Ping() {
         output.print("PONG");
         output.flush();
+    }
+    
+    public void makeDirectory(){
+        File chatLog = new File("ChatLog");
+        if(!chatLog.exists()){
+            chatLog.mkdir();
+        }
     }
 }

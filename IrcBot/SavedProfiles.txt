@@ -1,12 +1,4 @@
 irc.sorcery.net
 yakuchi
 Qwae
-#Grindlock
-irc.inet.fi
-yakuchi
-PoreBot
-#Porebottaus
-irc.paivola.fi
-yakuchi
-Qwae
-#grindbot
+#grindlock

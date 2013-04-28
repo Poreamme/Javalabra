@@ -1,20 +1,44 @@
-Valitse k‰yttˆ moodi:
-	Normal Mode: Sievent‰‰ viestit fiksun n‰kˆisiksi
-	Debug Mode: ei koske viestien ulkoasuun vaan n‰ytt‰‰ ne sellaisenaan
+Ohjelman K‰ynnistys:
 
-Luo uusi- tai lataa vanha profiili tiedostosta
-	Luo uusi profiili:
-		Anna irc-verkon osoite
-		Anna botin omistaja (oma nick)
-		Anna botille nimi
-		Anna irc kanava jonne botti liittyy
+Valitse Moodi:
+	Normal Mode:
+	-Kopioi irc chatin konsoliin miellytt‰v‰sti luettavaan muotoon ja
+	 j‰tt‰‰ kirjoittamatta ylim‰‰r‰iset serverin l‰hett‰m‰t viestit
+	 kuten esimerkiksi pingit.
 
-		Tallenna profiili?
+	Debug Mode:
+	-Ei koske viesteihin mitenk‰‰n vaan n‰ytt‰‰ kaiken niin kuin se on.
 
-	Lataa vanha profiili
-		valitse listasta haluamasi profiili
-		ja kirjoita sen irc-verkon osoite
+Valitse Profiili:
+	Tee uusi profiili:
+	- Anna Irc-verkon osoite
+	- Anna omistajan nimi
+	- Anna botin nimi
+	- Anna irc-kanavan nimi
+		Tallenna?
+		ƒl‰ Tallena?
 
-Botin olisi tarkoitus liitty‰ irc-verkkoon t‰ss‰ vaiheessa.
-t‰m‰n j‰lkeen et voi tehd‰ muuta kuin katsoa ett‰ mit‰ tapahtuu
-...toistaiseksi	
+	Lataa Profiili Tiedostosta
+	- Valitse listasta se profiili, jota haluat k‰ytt‰‰
+	  Ja kirjoita sen irc-verkon osoite konsoliin
+
+	K‰yt‰ edellist‰ profiilia.
+
+IrcBot pohjan hyˆdynt‰minen:
+	T‰m‰ pohja ei itsess‰‰n tee juuri mit‰‰n vaan sen tarkoitus on olla
+	helposti jatkettava irc botin pohja. T‰t‰ pohjaa siis k‰ytett‰isiin
+	CommandCenter luokasta k‰sin.
+
+	Esimerkkej‰:
+	if(message.equals("laske kymmeneen")){
+		for(int i=0; i<10; i++){
+			send(i);
+		}
+	}
+	if(sender.equals("poreamme")){
+		send("Hurraa");
+	}
+	//en suosittele
+	if(channel.equals("#grindlock")){
+		send("T‰m‰ on ihan surkea kanava!");
+	}

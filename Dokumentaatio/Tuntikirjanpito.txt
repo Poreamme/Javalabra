@@ -94,3 +94,13 @@
 	moodissa.
 	- note to self, tee graafinen käyttöliittymä
 	QT:lla kuten ennenkin.
+
+Tämä ilmeisesti on räjähtänyt pullin yhteydessä.
+
+27.4.2013
+	Viimeisimpien bugien korjaukset
+28.4.2013
+	Dokumentaatioiden päivitykset
+	Testejä yritetty tehdä, en keksi että miten
+	voisi tehdä jonkun fiksun testin
+	-> testejä ei tehty

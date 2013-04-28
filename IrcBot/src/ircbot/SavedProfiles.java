@@ -58,22 +58,17 @@ public class SavedProfiles {
         return ProfileList;
     }
 
-<<<<<<< HEAD
+
     /*
      * Saves the previous Profile to file
      * @param profile Profile to be saved.
      */
-=======
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
+
     public void setPreviousProfile(Profile profile) {
 
 
         try {
-<<<<<<< HEAD
             FileWriter fs = new FileWriter("PreviousProfile.txt");
-=======
-            FileWriter fs = new FileWriter("PreviousProfile.txt", true);
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
             BufferedWriter out = new BufferedWriter(fs);
             out.write(profile.toString());
             out.close();

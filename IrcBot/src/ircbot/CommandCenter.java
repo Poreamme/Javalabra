@@ -18,9 +18,7 @@ public class CommandCenter {
     private IrcBot ircBot;
     private IrcBotDebug ircBotDebug;
     private Calendar cal = Calendar.getInstance();
-    private List<String> greetings = new ArrayList<String>();
-<<<<<<< HEAD
-    
+    private List<String> greetings = new ArrayList<String>();    
     /*
      * Constructor of CommandCenter
      * @param ircBot IrcBot which delivers the messages for CommandCenter to be handled
@@ -37,11 +35,6 @@ public class CommandCenter {
     public CommandCenter(IrcBotDebug ircBot){
         this.ircBotDebug = ircBot;
         getGreetings();
-=======
-    public CommandCenter(IrcBot ircBot){
-        this.ircBot = ircBot;
-        getGreetings();
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     }
     /*
      * Reacts to a possible command, if message doesn't include one, then it ignores the message.
@@ -69,8 +62,6 @@ public class CommandCenter {
                     ircBot.send(channel, greetings.get(i));
                 }
             }
-
-<<<<<<< HEAD
         
         //Lisää tervehdyksen tietokantaan jos sitä ei tiedetä jo valmiiksi.
         if(sender.equals(this.ircBot.owner)
@@ -131,19 +122,6 @@ public class CommandCenter {
         }
         
         //sysottaa kaikki tuntemansa tervehdykset konsoliin.
-=======
-        if(sender.equals(this.ircBot.owner)
-                && message.startsWith("!addGreeting")){
-            for(int i=0; i<greetings.size(); i++){
-                if(greetings.get(i).equalsIgnoreCase(message)){
-                    ircBot.send(channel, "I already know that greeting!");
-                }else{
-                    addGreeting(message.substring(13)+"\r\n");
-                }
-            }
-        }
-        
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
         if(message.equals("showGreetings")){
             for(int i=0; i<greetings.size(); i++){
                 System.out.println(greetings.get(i));
@@ -162,7 +140,6 @@ public class CommandCenter {
         writeToFile(file, string);
     }
     
-<<<<<<< HEAD
     /*
      * Adds a new greeting to the database
      * @param greeting String which contains the greeting to be added.
@@ -176,14 +153,6 @@ public class CommandCenter {
     /*
      * Gets greetings from the database to be ready for use.
      */
-=======
-    public void addGreeting(String greeting){
-        this.greetings.add(greeting);
-        File file = new File("Database/tervehdykset.txt");
-        writeToFile(file, greeting);
-    }
-    
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public void getGreetings(){
         try
         {
@@ -203,15 +172,12 @@ public class CommandCenter {
         }
     }
     
-<<<<<<< HEAD
     /*
      * Writes desired text to desired file.
      * @param file File that contains the path to the file to write to
      * @param string String which contains the line to be written to the File
      */
     
-=======
->>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public void writeToFile(File file, String string){
         try
         {

@@ -1,0 +1,13 @@
+Ohjelman k‰ynnistyess‰ Main luokka k‰ynnist‰‰ IrcClientBotApp -luokan. 
+K‰ynnistyess‰‰n IrcClientBotApp -luokka Pyyt‰‰ k‰ytt‰j‰‰ valitsemaan
+K‰ynnistys moodin ja k‰ytett‰v‰n Profiilin. Jos k‰ytt‰j‰ valitsee 
+Uuden profiilin, pyydet‰‰n h‰nelt‰ Irc-verkon osoite, botin nimi, sen omistaja
+sek‰ kanava jolle liitty‰. T‰m‰n j‰lkeen k‰ytt‰j‰lt‰ kysyt‰‰n ett‰ tallennetaanko
+t‰m‰ uusi profiili tietokantaan vai ei. Mik‰li k‰ytt‰j‰ p‰‰ttikin ladata jo olemassa
+olevan profiilin tiedostosta, niin h‰nelle listataan lista kaikista olemassa olevista
+profiileista, joista h‰nen tulee valita  yksi.
+	Moodin ja Profiilin valittua IrcClientBotApp k‰ynnist‰‰ IrcBotin tai IrcBotDebugin.
+IrcBot k‰ynnist‰‰ while(connected) loopin jolla moodista riippuen joko parseroidaan tai
+j‰tet‰‰n parseroimatta tuleva data. Viestin luettuaan botti l‰hett‰‰ sen parametreina 
+CommandCenter luokalle joka k‰y parametrit l‰pi ja tekee jotain jos sen on m‰‰r‰ tehd‰
+jotain kyseisill‰ parametreilla.

@@ -27,6 +27,7 @@ public class IrcBotDebug {
         this.owner = profile.getOwner();
         this.nick = profile.getNick();
         this.channel = profile.getChannel();
+		makeDirectory();
         Start();
     }
     
@@ -104,5 +105,12 @@ public class IrcBotDebug {
     public void Ping() {
         output.print("PONG");
         output.flush();
+    }
+	
+	public void makeDirectory(){
+        File chatLog = new File("ChatLog");
+        if(!chatLog.exists()){
+            chatLog.mkdir();
+        }
     }
 }

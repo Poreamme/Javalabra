@@ -73,6 +73,11 @@ public class IrcClientBotApp {
                 + " 1 = Create New Profile \n"
                 + " 2 = Load Existing Profile \n"
                 + " 3 = Load Previous Profile");
+<<<<<<< HEAD
+=======
+
+        int profile = Integer.parseInt(scanner.nextLine());
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
 
         int profile = 0;
         try{
@@ -111,11 +116,14 @@ public class IrcClientBotApp {
         return null;
     }
 
+<<<<<<< HEAD
     /*
      * Gets the previously used profile from database.
      * @return Profile which was previously used.
      */
     
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public Profile getPreviousProfile() {
 
         if (new File("PreviousProfile.txt").exists()) {
@@ -132,12 +140,16 @@ public class IrcClientBotApp {
                 }
 
                 in.close();
+<<<<<<< HEAD
                 System.out.println(i);
                 if(i == 0){
                     return null;
                 }else{
                     return new Profile(profileParts[0], profileParts[1], profileParts[2], profileParts[3]);
                 }
+=======
+                return new Profile(profileParts[0], profileParts[1], profileParts[2], profileParts[3]);
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
             } catch (IOException e) {
                 System.err.println("Error: " + e.getMessage());
                 return null;
@@ -151,16 +163,20 @@ public class IrcClientBotApp {
    
     }
 
+<<<<<<< HEAD
     /*
      * Method to load a profile from file
      * @return Profile loaded from file.
      */
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public Profile loadExistingProfile() throws InterruptedException {
         HashMap<String, Profile> loadedProfiles = profiles.loadProfiles();
         while (true) {
             for (Profile temprofile : loadedProfiles.values()) {
                 System.out.println(temprofile);
             }
+<<<<<<< HEAD
             System.out.println("\nChoose your Profile by typing its server:\nHINT: type EXIT to quit \n-Press enter to go back-");
             String desiredProfile = scanner.nextLine();
             if (desiredProfile.equals("EXIT")) {
@@ -170,6 +186,13 @@ public class IrcClientBotApp {
                 clearConsole();
                 ChooseProfile();
             }else if (loadedProfiles.containsKey(desiredProfile)) {
+=======
+            System.out.println("\nChoose your Profile by typing its server:\nHINT: type EXIT to quit");
+            String desiredProfile = scanner.nextLine();
+            if (desiredProfile.equals("EXIT")) {
+                System.exit(0);
+            } else if (loadedProfiles.containsKey(desiredProfile)) {
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
                 Thread.sleep(1000);
                 clearConsole();
                 return loadedProfiles.get(desiredProfile);
@@ -181,11 +204,14 @@ public class IrcClientBotApp {
         }
     }
 
+<<<<<<< HEAD
     /*
      * Method to create a new Profile
      * @return Profile created.
      */
     
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public Profile createNewProfile() throws InterruptedException {
         Profile newProfile = gatherProfileData();
         while (true) {
@@ -205,11 +231,14 @@ public class IrcClientBotApp {
         }
     }
 
+<<<<<<< HEAD
     /*
      * Method to save a new Profile to database
      * @param newProfile Profile to be saved.
      * @return Profile saved.
      */
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public Profile createAndSave(Profile newProfile) throws InterruptedException {
         HashMap<String, Profile> checkIfExists = profiles.loadProfiles();
 
@@ -230,11 +259,14 @@ public class IrcClientBotApp {
         return newProfile;
     }
 
+<<<<<<< HEAD
     /*
      * Method to collect needed data for creating a new profile
      * @return Profile which was made from gathered data.
      */
     
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public Profile gatherProfileData() {
         System.out.println("Creating new profile: ");
         System.out.print("Server: ");
@@ -249,9 +281,12 @@ public class IrcClientBotApp {
         return new Profile(server, owner, nick, channel);
     }
 
+<<<<<<< HEAD
     /*
      * Method to gather needed information from the user to launch the bot.
      */
+=======
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public void initialize() throws InterruptedException, IOException {
         boolean DebugMode = ChooseRunningMode();
         Profile profile = ChooseProfile();

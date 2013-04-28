@@ -94,6 +94,25 @@ public class IrcBot {
      * Sends the desired message.
      * @param message String which contains the message to be sent.
      */
+<<<<<<< HEAD
+=======
+    
+    //Private Message to a person
+    public void send(String sender, String message, int kieroTapaKiertaaErrori){
+        System.out.print(""/*Tänne tulee mömmöä*/);
+        output.print(message);
+        output.flush();
+    }
+    
+    //public message to a channel
+    public void send(String channel, String message) {
+        System.out.println("<"+this.nick+">" + " PRIVMSG " + channel + " " + "["+message+"]");
+        output.print("PRIVMSG "+channel+" :"+message+"\r\n");
+        output.flush();
+    }
+    
+    //Message which is already fit for irc syntax
+>>>>>>> 6a54f731c133ebc57fc088b156d68f338c14b089
     public void send(String message) {
         System.out.print(message);
         output.print(message);
